@@ -13,14 +13,14 @@ void InitList(SeqList &L){
 	L.length=0;
 }
 void Output(SeqList L){
-	cout<<"Ë³Ðò±íÖÐµÄÊý¾ÝÓÐ£º"<<endl;
+	cout<<"é¡ºåºè¡¨ä¸­çš„æ•°æ®æœ‰ï¼š"<<endl;
 	for(int i=0;i<L.length;i++)
 		cout<<L.data[i]<<" ";
 	cout<<endl;
 }
 void ListInsert(SeqList &L,int e,int i){
-	if(i<0||i>L.length+1){
-		cout<<"Î»ÖÃ·Ç·¨£¡"<<endl;
+	if(i<1||i>L.length+1){
+		cout<<"ä½ç½®éžæ³•ï¼"<<endl;
 		return;
 	}
 	for(int j=L.length-1;j>=i-1;j--)
@@ -29,8 +29,8 @@ void ListInsert(SeqList &L,int e,int i){
 	L.length++;
 }
 void ListDelete(SeqList &L,int i){
-	if(i<0||i>L.length+1){
-		cout<<"Î»ÖÃ·Ç·¨£¡"<<endl;
+	if(i<1||i>L.length+1){
+		cout<<"ä½ç½®éžæ³•ï¼"<<endl;
 		return;
 	}
 	for(int j=i-1;j<L.length;j++)
@@ -42,9 +42,9 @@ void IsEmpty(SeqList L){
 	if(!L.length)
 		flag=0;
 	if(flag)
-		cout<<"´Ë±í²»ÊÇÒ»¸ö¿Õ±í"<<endl;
+		cout<<"æ­¤è¡¨ä¸æ˜¯ä¸€ä¸ªç©ºè¡¨"<<endl;
 	else
-		cout<<"´Ë±íÊÇÒ»¸ö¿Õ±í"<<endl; 
+		cout<<"æ­¤è¡¨æ˜¯ä¸€ä¸ªç©ºè¡¨"<<endl; 
 }
 void GetValue(SeqList L,int i,int &e){
 	e=L.data[i-1];
@@ -69,24 +69,24 @@ int main()
 	InitList(s1);
 	int a[1005],n,i;
 	int tmp,x=0;
-	cout<<"ÇëÊäÈë³õÊ¼±íµÄ³¤¶È£º"; 
+	cout<<"è¯·è¾“å…¥åˆå§‹è¡¨çš„é•¿åº¦ï¼š"; 
 	cin>>n;
-	cout<<"ÇëÊäÈë³õÊ¼±íµÄÊý¾Ý£º";
+	cout<<"è¯·è¾“å…¥åˆå§‹è¡¨çš„æ•°æ®ï¼š";
 	for(int i=0;i<n;i++)
 		cin>>a[i],ListInsert(s1,a[i],i+1);
 	for(;x!=1;){
-	cout<<"ÇëÑ¡ÔñÄúµÄ²Ù×÷£º\n(1)Ïò±íÖÐ²åÈëÊý¾Ý\n(2)´Ó±íÖÐÉ¾³ýÊý¾Ý\n(3)¼ì²é±íÊÇ·ñÎª¿Õ\n(4)²éÑ¯Ä³Î»ÖÃÔÚ±íÖÐµÄÊý¾Ý\n(5)²éÑ¯±íÖÐÊÇ·ñ´æÔÚÄ³Êý¾Ý\n(6)²éÑ¯±í´ï³¤¶È\n(0)ÍË³ö £º";
+	cout<<"è¯·é€‰æ‹©æ‚¨çš„æ“ä½œï¼š\n(1)å‘è¡¨ä¸­æ’å…¥æ•°æ®\n(2)ä»Žè¡¨ä¸­åˆ é™¤æ•°æ®\n(3)æ£€æŸ¥è¡¨æ˜¯å¦ä¸ºç©º\n(4)æŸ¥è¯¢æŸä½ç½®åœ¨è¡¨ä¸­çš„æ•°æ®\n(5)æŸ¥è¯¢è¡¨ä¸­æ˜¯å¦å­˜åœ¨æŸæ•°æ®\n(6)æŸ¥è¯¢è¡¨è¾¾é•¿åº¦\n(0)é€€å‡º ï¼š";
 	cin>>tmp;
 	switch(tmp){
 		case 1:{
-			cout<<"ÇëÊäÈëÊý¾Ý¼°ÆäÎ»ÖÃ£º"; 
+			cout<<"è¯·è¾“å…¥æ•°æ®åŠå…¶ä½ç½®ï¼š"; 
 			cin>>e>>i;
 			ListInsert(s1,e,i);
 			Output(s1);
 			break;
 		}
 		case 2:{
-			cout<<"ÇëÊäÈëÒªÉ¾³ýµÄÊý¾ÝµÄÎ»ÖÃ£º";
+			cout<<"è¯·è¾“å…¥è¦åˆ é™¤çš„æ•°æ®çš„ä½ç½®ï¼š";
 			cin>>i;
 			ListDelete(s1,i);
 			Output(s1);
@@ -97,20 +97,20 @@ int main()
 			break;
 		}
 		case 4:{
-			cout<<"ÇëÊäÈëÒª²éÑ¯µÄÎ»ÖÃ£º";
+			cout<<"è¯·è¾“å…¥è¦æŸ¥è¯¢çš„ä½ç½®ï¼š";
 			cin>>i;
 			GetValue(s1,i,e);
-			cout<<"±íÖÐµÚ"<<i<<"¸öÊý¾ÝÎª"<<e<<endl;
+			cout<<"è¡¨ä¸­ç¬¬"<<i<<"ä¸ªæ•°æ®ä¸º"<<e<<endl;
 			break;
 		} 
 		case 5:{
-			cout<<"ÇëÊäÈëÒª²éÑ¯µÄÊý¾Ý£º";
+			cout<<"è¯·è¾“å…¥è¦æŸ¥è¯¢çš„æ•°æ®ï¼š";
 			cin>>i;
-			cout<<"Êý¾ÝµÄÎ»ÖÃÔÚµÚ"<<LocateValue(s1,i)<<"¸ö"<<endl;
+			cout<<"æ•°æ®çš„ä½ç½®åœ¨ç¬¬"<<LocateValue(s1,i)<<"ä¸ª"<<endl;
 			break;
 		}
 		case 6:{
-			cout<<"±í³¤Îª"<<ListLength(s1)<<endl;
+			cout<<"è¡¨é•¿ä¸º"<<ListLength(s1)<<endl;
 			break;
 		}
 		case 0:{
@@ -119,7 +119,7 @@ int main()
 			break;
 		}
 		default:{
-			cout<<"·Ç·¨ÊäÈë£¡"<<endl;
+			cout<<"éžæ³•è¾“å…¥ï¼"<<endl;
 			break;
 		}
 	}}
