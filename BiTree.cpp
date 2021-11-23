@@ -1,8 +1,9 @@
 #include<stack>
 #include<iostream>
 #include<cstdlib>
+#include<cstdio>
 using namespace std;
-int len;
+int len,w;
 typedef struct BiTNode {
 	int data;
 	struct BiTNode *lChild, *rChild;
@@ -44,6 +45,19 @@ void CreateBiTree(BiTree &tree,int *a) {
 		InsertNode(tree, s);
 	}
 }
+int PreCreateTree(BiTree &root) {
+	char x;
+	cin >> x;
+	if (x == '#')
+		root = NULL;
+	else {
+		root = (BiTree)malloc(sizeof(BiTNode));
+		root->data = x;
+		PreCreateTree(root->lChild);
+		PreCreateTree(root->rChild);
+	}
+	return 1;
+}
 void PreOrderBiTree(BiTree T) {
 	if (T == NULL)
 		return;
@@ -52,7 +66,8 @@ void PreOrderBiTree(BiTree T) {
 	while (p != NULL || !s.empty()) {
 		while (p != NULL) {
 			s.push(p);
-			cout << p->data << " ";
+			if(w==1) cout << (char)p->data << " ";
+			else cout << p->data << " ";
 			p = p->lChild;
 		}
 		if (!s.empty()) {
@@ -74,7 +89,8 @@ void InOrderBiTree(BiTree T) {
 		}
 		if (!s.empty()) {
 			p = s.top();
-			cout << p->data << " ";
+			if(w==1)cout << (char)p->data << " ";
+			else cout << p->data << " ";
 			s.pop();
 			p = p->rChild;
 		}
@@ -103,22 +119,33 @@ void PostOrderBiTree(BiTree T) {
 				p = tmp->btnode->rChild;
 			}
 			else {
-				cout << tmp->btnode->data << " ";
+				if(w==1)cout << (char)tmp->btnode->data << " ";
+				else cout << tmp->btnode->data << " ";
 				p = NULL;
 			}
 		}
 	}
 }
 int main() {
-	int x=0,flag;
-	cout << "请输入二叉树的初始节点数:";
-	cin >> len;
+	int flag,x=0;
 	int a[505];
-	cout << "请输入各节点,将以二叉排序树存储：";
-	for (int i = 0; i < len; i++)
-		cin >> a[i];
 	BiTree tree = NULL;
-	CreateBiTree(tree, a);
+	cout << "请选择:(1)以先序遍历输入各节点(2)输入各节点,以二叉排序树存储(数字限定)：";
+	cin >> w;
+	if (w == 1) {
+		PreCreateTree(tree);
+	}
+	else if (w == 2) {
+		cout << "请输入二叉树的初始节点数:";
+		cin >> len;
+		for (int i = 0; i < len; i++)
+			cin >> a[i];
+		CreateBiTree(tree, a);
+	}
+	else {
+		cout << "非法输入！";
+		return 0;
+	}
 	for (; x != 1;) {
 		cout << "请选择您的操作：\n(1)输出先序遍历结果\n(2)输出中序遍历结果\n(3)输出后序遍历结果\n(0)退出：";
 		cin >> flag;
