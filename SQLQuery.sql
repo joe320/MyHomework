@@ -50,20 +50,20 @@ create unique index Stusno on Student(Sno);
 create unique index Coucno on Course(Cno);
 create unique index SCno on SC(Sno ASC,Cno DESC);
 go
-insert into Student values('200215121','ÀîÓÂ','ÄĞ','20','CS');
-insert into Student values('200215122','Áõ³¿','Å®','19','CS');
-insert into Student values('200215123','ÍõÃô','Å®','18','MA');
-insert into Student values('200215124','ÕÅÁ¢','ÄĞ','19','IS');
+insert into Student values('200215121','æå‹‡','ç”·','20','CS');
+insert into Student values('200215122','åˆ˜æ™¨','å¥³','19','CS');
+insert into Student values('200215123','ç‹æ•','å¥³','18','MA');
+insert into Student values('200215124','å¼ ç«‹','ç”·','19','IS');
 go
 update Student set Sno=200215125 where Sno='200215124';
 go
-insert into Course(Cno,Cname,Ccredit) values('2','ÊıÑ§','2');
-insert into Course(Cno,Cname,Ccredit) values('6','Êı¾İ´¦Àí','2');
-insert into Course values('7','PASCALÓïÑÔ','6','4');
-insert into Course values('5','Êı¾İ½á¹¹','7','4');
-insert into Course values('1','Êı¾İ¿â','5','4');
-insert into Course values('3','ĞÅÏ¢ÏµÍ³','1','4');
-insert into Course values('4','²Ù×÷ÏµÍ³','6','3');
+insert into Course(Cno,Cname,Ccredit) values('2','æ•°å­¦','2');
+insert into Course(Cno,Cname,Ccredit) values('6','æ•°æ®å¤„ç†','2');
+insert into Course values('7','PASCALè¯­è¨€','6','4');
+insert into Course values('5','æ•°æ®ç»“æ„','7','4');
+insert into Course values('1','æ•°æ®åº“','5','4');
+insert into Course values('3','ä¿¡æ¯ç³»ç»Ÿ','1','4');
+insert into Course values('4','æ“ä½œç³»ç»Ÿ','6','3');
 go
 insert into SC values('200215121','1','92');
 insert into SC values('200215121','2','85');
@@ -71,131 +71,145 @@ insert into SC values('200215121','3','88');
 insert into SC values('200215122','2','90');
 insert into SC values('200215122','3','80');
 go
---1.²éÑ¯È«ÌåÑ§ÉúµÄÑ§ºÅºÍĞÕÃû
+--1.æŸ¥è¯¢å…¨ä½“å­¦ç”Ÿçš„å­¦å·å’Œå§“å
 select Sno,Sname from Student;
---2.²éÑ¯È«ÌåÑ§ÉúµÄĞÕÃû¡¢Ñ§ºÅ¡¢ËùÔÚÏµ
+--2.æŸ¥è¯¢å…¨ä½“å­¦ç”Ÿçš„å§“åã€å­¦å·ã€æ‰€åœ¨ç³»
 select Sname,Sno,Sdept from Student;
---3.²éÑ¯È«ÌåÑ§ÉúµÄÏêÏ¸¼ÇÂ¼
+--3.æŸ¥è¯¢å…¨ä½“å­¦ç”Ÿçš„è¯¦ç»†è®°å½•
 select * from Student;
---4.²éÑ¯È«ÌåÑ§ÉúµÄĞÕÃû¼°Æä³öÉúÄê·İ£¨¶Ô³öÉúÄê·İÁĞ¸³±ğÃûÎªBirthYear£©
+--4.æŸ¥è¯¢å…¨ä½“å­¦ç”Ÿçš„å§“ååŠå…¶å‡ºç”Ÿå¹´ä»½ï¼ˆå¯¹å‡ºç”Ÿå¹´ä»½åˆ—èµ‹åˆ«åä¸ºBirthYearï¼‰
 select Sname,2021-Sage BirthYear from Student;
---5.²éÑ¯È«ÌåÑ§ÉúµÄĞÕÃû¡¢³öÉúÄê·İºÍËùÔÚÔºÏµ£¬ÒªÇóÓÃĞ¡Ğ´×ÖÄ¸±íÊ¾ËùÓĞÏµÃû
+--5.æŸ¥è¯¢å…¨ä½“å­¦ç”Ÿçš„å§“åã€å‡ºç”Ÿå¹´ä»½å’Œæ‰€åœ¨é™¢ç³»ï¼Œè¦æ±‚ç”¨å°å†™å­—æ¯è¡¨ç¤ºæ‰€æœ‰ç³»å
 select Sname,2021-Sage BirthYear,LOWER(Sdept) Department from Student;
---6.²éÑ¯Ñ¡ĞŞÁË¿Î³ÌµÄÑ§ÉúÑ§ºÅ
+--6.æŸ¥è¯¢é€‰ä¿®äº†è¯¾ç¨‹çš„å­¦ç”Ÿå­¦å·
 select distinct Sno from SC;
---7.²éÑ¯¼ÆËã»ú¿ÆÑ§ÏµÈ«ÌåÑ§ÉúµÄÃûµ¥
+--7.æŸ¥è¯¢è®¡ç®—æœºç§‘å­¦ç³»å…¨ä½“å­¦ç”Ÿçš„åå•
 select Sname from Student where Sdept='CS';
---8.²éÑ¯ËùÓĞÄêÁäÔÚ20ËêÒÔÏÂµÄÑ§ÉúµÄĞÕÃû¼°ÆäÄêÁä
+--8.æŸ¥è¯¢æ‰€æœ‰å¹´é¾„åœ¨20å²ä»¥ä¸‹çš„å­¦ç”Ÿçš„å§“ååŠå…¶å¹´é¾„
 select Sname,Sage from Student where Sage<20;
---9.²éÑ¯¿¼ÊÔ³É¼¨ÓĞ²»¼°¸ñµÄÑ§ÉúµÄÑ§ºÅ
+--9.æŸ¥è¯¢è€ƒè¯•æˆç»©æœ‰ä¸åŠæ ¼çš„å­¦ç”Ÿçš„å­¦å·
 select distinct Sno from SC where Grade<60;
---10.²éÑ¯ÄêÁäÔÚ20¡«30ËêÖ®¼ä£¨°üÀ¨20ËæºÍ30Ëê£©µÄÑ§ÉúĞÕÃû¡¢Ïµ±ğºÍÄêÁä
+--10.æŸ¥è¯¢å¹´é¾„åœ¨20ï½30å²ä¹‹é—´ï¼ˆåŒ…æ‹¬20éšå’Œ30å²ï¼‰çš„å­¦ç”Ÿå§“åã€ç³»åˆ«å’Œå¹´é¾„
 select Sname,Sdept,Sage from Student where Sage between 20 and 30;
---11.²éÑ¯ÄêÁä²»ÔÚ20¡«30ËêÖ®¼äµÄÑ§ÉúĞÕÃû¡¢Ïµ±ğºÍÄêÁä
+--11.æŸ¥è¯¢å¹´é¾„ä¸åœ¨20ï½30å²ä¹‹é—´çš„å­¦ç”Ÿå§“åã€ç³»åˆ«å’Œå¹´é¾„
 select Sname,Sdept,Sage from Student where Sage not between 20 and 30;
---12.²éÑ¯¼ÆËã»ú¿ÆÑ§Ïµ¡¢ÊıÑ§ÏµºÍĞÅÏ¢ÏµÑ§ÉúµÄĞÕÃûºÍĞÔ±ğ
+--12.æŸ¥è¯¢è®¡ç®—æœºç§‘å­¦ç³»ã€æ•°å­¦ç³»å’Œä¿¡æ¯ç³»å­¦ç”Ÿçš„å§“åå’Œæ€§åˆ«
 select Sname,Ssex from Student where Sdept in ('CS','MA','IS');
---13.²éÑ¯¼È²»ÊÇ¼ÆËã»ú¿ÆÑ§Ïµ¡¢ÊıÑ§Ïµ£¬Ò²²»ÊÇĞÅÏ¢ÏµµÄÑ§ÉúµÄĞÕÃûºÍĞÔ±ğ
+--13.æŸ¥è¯¢æ—¢ä¸æ˜¯è®¡ç®—æœºç§‘å­¦ç³»ã€æ•°å­¦ç³»ï¼Œä¹Ÿä¸æ˜¯ä¿¡æ¯ç³»çš„å­¦ç”Ÿçš„å§“åå’Œæ€§åˆ«
 select Sname,Ssex from Student where Sdept not in ('CS','MA','IS');
---14.²éÑ¯Ñ§ºÅÎª200215121µÄÑ§ÉúµÄÏêÏ¸Çé¿ö
+--14.æŸ¥è¯¢å­¦å·ä¸º200215121çš„å­¦ç”Ÿçš„è¯¦ç»†æƒ…å†µ
 select * from Student where Sno='200215121';
---15.²éÑ¯ËùÓĞĞÕÁõµÄÑ§ÉúµÄĞÕÃû¡¢Ñ§ºÅºÍĞÔ±ğ
-select Sname,Sno,Ssex from Student where Sname like 'Áõ%';
---16.²éÑ¯ĞÕ¡°Å·Ñô¡±ÇÒÈ«ÃûÎª3¸öºº×ÖµÄÑ§ÉúµÄĞÕÃû
-select Sname from Student where Sname like 'Å·Ñô_';
---17.²éÑ¯Ãû×ÖÖĞµÚ¶ş¸ö×ÖÎª¡°Ñô¡±×ÖµÄÑ§ÉúµÄĞÕÃûºÍÑ§ºÅ
-select Sname,Sno from Student where Sname like '_Ñô%';
---18.²éÑ¯ËùÓĞ²»ĞÕÁõµÄÑ§ÉúĞÕÃû
-select Sname,Sno,Ssex from Student where Sname not like 'Áõ%';
---19.²éÑ¯DB_Design¿Î³ÌµÄ¿Î³ÌºÅºÍÑ§·Ö
+--15.æŸ¥è¯¢æ‰€æœ‰å§“åˆ˜çš„å­¦ç”Ÿçš„å§“åã€å­¦å·å’Œæ€§åˆ«
+select Sname,Sno,Ssex from Student where Sname like 'åˆ˜%';
+--16.æŸ¥è¯¢å§“â€œæ¬§é˜³â€ä¸”å…¨åä¸º3ä¸ªæ±‰å­—çš„å­¦ç”Ÿçš„å§“å
+select Sname from Student where Sname like 'æ¬§é˜³_';
+--17.æŸ¥è¯¢åå­—ä¸­ç¬¬äºŒä¸ªå­—ä¸ºâ€œé˜³â€å­—çš„å­¦ç”Ÿçš„å§“åå’Œå­¦å·
+select Sname,Sno from Student where Sname like '_é˜³%';
+--18.æŸ¥è¯¢æ‰€æœ‰ä¸å§“åˆ˜çš„å­¦ç”Ÿå§“å
+select Sname,Sno,Ssex from Student where Sname not like 'åˆ˜%';
+--19.æŸ¥è¯¢DB_Designè¯¾ç¨‹çš„è¯¾ç¨‹å·å’Œå­¦åˆ†
 select Cno,Ccredit from Course where Cname like 'DB\_Design' escape '\';
---20.²éÑ¯ÒÔ¡°DB_¡±¿ªÍ·£¬ÇÒµ¹ÊıµÚÈı¸ö×Ö·ûÎªiµÄ¿Î³ÌµÄÏêÏ¸Çé¿ö
+--20.æŸ¥è¯¢ä»¥â€œDB_â€å¼€å¤´ï¼Œä¸”å€’æ•°ç¬¬ä¸‰ä¸ªå­—ç¬¦ä¸ºiçš„è¯¾ç¨‹çš„è¯¦ç»†æƒ…å†µ
 select * from Course where Cname like 'DB\_%i__' escape '\';
---21.²éÑ¯È±ÉÙ³É¼¨µÄÑ§ÉúµÄÑ§ºÅºÍÏàÓ¦µÄ¿Î³ÌºÅ
+--21.æŸ¥è¯¢ç¼ºå°‘æˆç»©çš„å­¦ç”Ÿçš„å­¦å·å’Œç›¸åº”çš„è¯¾ç¨‹å·
 select Sno,Cno from SC where Grade is null;
---22.²éÑ¯ËùÓĞÓĞ³É¼¨µÄÑ§ÉúÑ§ºÅºÍ¿Î³ÌºÅ
+--22.æŸ¥è¯¢æ‰€æœ‰æœ‰æˆç»©çš„å­¦ç”Ÿå­¦å·å’Œè¯¾ç¨‹å·
 select Sno,Cno from SC where Grade is not null;
---23.²éÑ¯¼ÆËã»ú¿ÆÑ§ÏµÄêÁäÔÚ20ËêÒÔÏÂµÄÑ§ÉúĞÕÃû
+--23.æŸ¥è¯¢è®¡ç®—æœºç§‘å­¦ç³»å¹´é¾„åœ¨20å²ä»¥ä¸‹çš„å­¦ç”Ÿå§“å
 select Sname from Student where Sdept='CS' and Sage<20;
---24.²éÑ¯Ñ¡ĞŞÁË3ºÅ¿Î³ÌµÄÑ§ÉúµÄÑ§ºÅ¼°Æä³É¼¨£¬²éÑ¯½á¹û°´·ÖÊıµÄ½µĞòÅÅÁĞ
+--24.æŸ¥è¯¢é€‰ä¿®äº†3å·è¯¾ç¨‹çš„å­¦ç”Ÿçš„å­¦å·åŠå…¶æˆç»©ï¼ŒæŸ¥è¯¢ç»“æœæŒ‰åˆ†æ•°çš„é™åºæ’åˆ—
 select Sno,Grade from SC where Cno='3' order by Grade desc;
---25.²éÑ¯È«ÌåÑ§ÉúÇé¿ö£¬²éÑ¯½á¹û°´ËùÔÚÏµµÄÏµºÅÉıĞòÅäÁĞ£¬Í¬Ò»ÏµÖĞµÄÑ§Éú°´ÄêÁä½µĞòÅÅÁĞ
+--25.æŸ¥è¯¢å…¨ä½“å­¦ç”Ÿæƒ…å†µï¼ŒæŸ¥è¯¢ç»“æœæŒ‰æ‰€åœ¨ç³»çš„ç³»å·å‡åºé…åˆ—ï¼ŒåŒä¸€ç³»ä¸­çš„å­¦ç”ŸæŒ‰å¹´é¾„é™åºæ’åˆ—
 select * from Student order by Sdept,Sage desc;
---26.²éÑ¯Ñ§Éú×ÜÈËÊı
+--26.æŸ¥è¯¢å­¦ç”Ÿæ€»äººæ•°
 select COUNT(*) from Student;
---27.²éÑ¯Ñ¡ĞŞÁË¿Î³ÌµÄÑ§ÉúÈËÊı
+--27.æŸ¥è¯¢é€‰ä¿®äº†è¯¾ç¨‹çš„å­¦ç”Ÿäººæ•°
 select COUNT(distinct Sno) from SC;
---28.¼ÆËã1ºÅ¿Î³ÌµÄÑ§ÉúÆ½¾ù³É¼¨
+--28.è®¡ç®—1å·è¯¾ç¨‹çš„å­¦ç”Ÿå¹³å‡æˆç»©
 select AVG(Grade) from SC where Cno='1';
---29.²éÑ¯Ñ¡ĞŞÁË1ºÅ¿Î³ÌµÄÑ§Éú×î¸ß·Ö
+--29.æŸ¥è¯¢é€‰ä¿®äº†1å·è¯¾ç¨‹çš„å­¦ç”Ÿæœ€é«˜åˆ†
 select MAX(Grade) from SC where Cno='1';
---30.²éÑ¯Ñ§Éú200215122Ñ¡ĞŞ¿Î³ÌµÄ×ÜÑ§·ÖÊı
+--30.æŸ¥è¯¢å­¦ç”Ÿ200215122é€‰ä¿®è¯¾ç¨‹çš„æ€»å­¦åˆ†æ•°
 select SUM(Ccredit) from SC,Course where Sno='200215122' and SC.Cno=Course.Cno;
---31.Çó¸÷¸ö¿Î³ÌºÅ¼°ÏàÓ¦µÄÑ¡¿ÎÈËÊı
+--31.æ±‚å„ä¸ªè¯¾ç¨‹å·åŠç›¸åº”çš„é€‰è¯¾äººæ•°
 select Cno,COUNT(Sno) from SC group by Cno;
---32.²éÑ¯Ñ¡ĞŞÁË3ÃÅ¿ÎÒÔÉÏ¿Î³ÌµÄÑ§ÉúÑ§ºÅ
+--32.æŸ¥è¯¢é€‰ä¿®äº†3é—¨è¯¾ä»¥ä¸Šè¯¾ç¨‹çš„å­¦ç”Ÿå­¦å·
 select Sno from SC group by Sno having COUNT(*)>3;
---33.²éÑ¯Ã¿¸öÑ§Éú¼°ÆäÑ¡ĞŞ¿Î³ÌµÄÇé¿ö
+--33.æŸ¥è¯¢æ¯ä¸ªå­¦ç”ŸåŠå…¶é€‰ä¿®è¯¾ç¨‹çš„æƒ…å†µ
 select Student.*,SC.* from Student,SC where Student.Sno=SC.Sno;
---34.¶Ô33ÌâÓÃ×ÔÈ»Á¬½ÓÍê³É
+--34.å¯¹33é¢˜ç”¨è‡ªç„¶è¿æ¥å®Œæˆ
 select Student.Sno,Sname,Ssex,Sage,Sdept,Cno,Grade from Student,SC where Student.Sno=SC.Sno;
---35.²éÑ¯Ã¿Ò»ÃÅ¿ÎµÄ¼ä½ÓÏÈĞŞ¿Î
+--35.æŸ¥è¯¢æ¯ä¸€é—¨è¯¾çš„é—´æ¥å…ˆä¿®è¯¾
 select first.Cno,second.Cpno from Course first,Course second where first.Cpno=second.Cno;
---36.ÓÃÍâÁ¬½Ó²éÑ¯Ã¿¸öÑ§Éú¼°ÆäÑ¡¿ÎÇé¿ö
+--36.ç”¨å¤–è¿æ¥æŸ¥è¯¢æ¯ä¸ªå­¦ç”ŸåŠå…¶é€‰è¯¾æƒ…å†µ
 select Student.Sno,Sname,Ssex,Sage,Sdept,Cno,Grade from Student left outer join SC on (Student.Sno=SC.Sno);
---37.²éÑ¯Ñ¡ĞŞ2ºÅ¿Î³ÌÇÒ³É¼¨ÔÚ90·ÖÒÔÉÏµÄËùÓĞÑ§Éú
+--37.æŸ¥è¯¢é€‰ä¿®2å·è¯¾ç¨‹ä¸”æˆç»©åœ¨90åˆ†ä»¥ä¸Šçš„æ‰€æœ‰å­¦ç”Ÿ
 select Student.Sno,Sname from Student,SC where Student.Sno=SC.Sno and SC.Cno='2' and SC.Grade>90;
---38.²éÑ¯Ã¿¸öÑ§ÉúµÄÑ§ºÅ¡¢ĞÕÃû¡¢Ñ¡ĞŞµÄ¿Î³Ì¼°³É¼¨
+--38.æŸ¥è¯¢æ¯ä¸ªå­¦ç”Ÿçš„å­¦å·ã€å§“åã€é€‰ä¿®çš„è¯¾ç¨‹åŠæˆç»©
 select Student.Sno,Sname,Cname,Grade from Student,SC,Course where Student.Sno=SC.Sno and SC.Cno=Course.Cno;
---39.²éÑ¯Óë¡°Áõ³¿¡±ÔÚÍ¬Ò»¸öÏµÑ§Ï°µÄÑ§Éú
-select Sno,Sname,Sdept from Student where Sdept in(select Sdept from Student where Sname='Áõ³¿');
---40.²éÑ¯Ñ¡ĞŞÁË¿Î³ÌÃûÎª¡°ĞÅÏ¢ÏµÍ³¡±µÄÑ§ÉúÑ§ºÅºÍĞÕÃû
-select Student.Sno,Sname from Student,SC,Course where Student.Sno=SC.Sno and SC.Cno=Course.Cno and Course.Cname='ĞÅÏ¢ÏµÍ³';
---41.ÕÒ³öÃ¿¸öÑ§Éú³¬¹ıËûÑ¡ĞŞ¿Î³ÌÆ½¾ù³É¼¨µÄ¿Î³ÌºÅ
+--39.æŸ¥è¯¢ä¸â€œåˆ˜æ™¨â€åœ¨åŒä¸€ä¸ªç³»å­¦ä¹ çš„å­¦ç”Ÿ
+select Sno,Sname,Sdept from Student where Sdept in(select Sdept from Student where Sname='åˆ˜æ™¨');
+--40.æŸ¥è¯¢é€‰ä¿®äº†è¯¾ç¨‹åä¸ºâ€œä¿¡æ¯ç³»ç»Ÿâ€çš„å­¦ç”Ÿå­¦å·å’Œå§“å
+select Student.Sno,Sname from Student,SC,Course where Student.Sno=SC.Sno and SC.Cno=Course.Cno and Course.Cname='ä¿¡æ¯ç³»ç»Ÿ';
+--41.æ‰¾å‡ºæ¯ä¸ªå­¦ç”Ÿè¶…è¿‡ä»–é€‰ä¿®è¯¾ç¨‹å¹³å‡æˆç»©çš„è¯¾ç¨‹å·
 select Sno,Cno from SC x where Grade>=(select AVG(Grade) from SC y where y.Sno=x.Sno);
---42.²éÑ¯ÆäËûÏµÖĞ±È¼ÆËã»úÏµÄ³Ò»Ñ§ÉúÄêÁäĞ¡µÄÑ§ÉúĞÕÃûºÍÄêÁä
+--42.æŸ¥è¯¢å…¶ä»–ç³»ä¸­æ¯”è®¡ç®—æœºç³»æŸä¸€å­¦ç”Ÿå¹´é¾„å°çš„å­¦ç”Ÿå§“åå’Œå¹´é¾„
 select Sname,Sage from Student where Sage<any (select Sage from Student where Sdept='CS') and Sdept <> 'CS';
---43.²éÑ¯ÆäËûÏµÖĞ±È¼ÆËã»ú¿ÆÑ§ÏµËùÓĞÑ§ÉúÄêÁä¶¼Ğ¡µÄÑ§ÉúĞÕÃû¼°ÄêÁä
+--43.æŸ¥è¯¢å…¶ä»–ç³»ä¸­æ¯”è®¡ç®—æœºç§‘å­¦ç³»æ‰€æœ‰å­¦ç”Ÿå¹´é¾„éƒ½å°çš„å­¦ç”Ÿå§“ååŠå¹´é¾„
 select Sname,Sage from Student where Sage<all (select Sage from Student where Sdept='CS') and Sdept <> 'CS';
---44.²éÑ¯ËùÓĞÑ¡ĞŞÁË1ºÅ¿Î³ÌµÄÑ§ÉúĞÕÃû
+--44.æŸ¥è¯¢æ‰€æœ‰é€‰ä¿®äº†1å·è¯¾ç¨‹çš„å­¦ç”Ÿå§“å
 select Sname from Student where exists (select * from SC where Sno=Student.Sno and Cno='1');
---45.²éÑ¯Ã»ÓĞÑ¡ĞŞ1ºÅ¿Î³ÌµÄÑ§ÉúĞÕÃû
+--45.æŸ¥è¯¢æ²¡æœ‰é€‰ä¿®1å·è¯¾ç¨‹çš„å­¦ç”Ÿå§“å
 select Sname from Student where not exists (select * from SC where Sno=Student.Sno and Cno='1');
---46.²éÑ¯Ñ¡ĞŞÁËÈ«²¿¿Î³ÌµÄÑ§ÉúĞÕÃû
+--46.æŸ¥è¯¢é€‰ä¿®äº†å…¨éƒ¨è¯¾ç¨‹çš„å­¦ç”Ÿå§“å
 select Sname from Student where not exists (select * from Course where not exists (select * from SC where Sno=Student.Sno and Cno=Course.Cno));
---47.²éÑ¯ÖÁÉÙÑ¡ĞŞÁËÑ§Éú200215122Ñ¡ĞŞµÄÈ«²¿¿Î³ÌµÄÑ§ÉúºÅÂë
+--47.æŸ¥è¯¢è‡³å°‘é€‰ä¿®äº†å­¦ç”Ÿ200215122é€‰ä¿®çš„å…¨éƒ¨è¯¾ç¨‹çš„å­¦ç”Ÿå·ç 
 select distinct Sno from SC SCX where not exists (select * from SC SCY where SCY.Sno='200215122' and not exists (select * from SC SCZ where SCZ.Sno=SCX.Sno and SCZ.Cno=SCY.Cno));
---48.²éÑ¯¼ÆËã»ú¿ÆÑ§ÏµµÄÑ§Éú¼°ÄêÁä²»´óÓÚ19ËêµÄÑ§Éú
+--48.æŸ¥è¯¢è®¡ç®—æœºç§‘å­¦ç³»çš„å­¦ç”ŸåŠå¹´é¾„ä¸å¤§äº19å²çš„å­¦ç”Ÿ
 select * from Student where Sdept='CS' union select * from Student where Sage<=19;
---49.²éÑ¯Ñ¡ĞŞÁË¿Î³Ì1»òÕßÑ¡ĞŞÁË¿Î³Ì2µÄÑ§Éú
+--49.æŸ¥è¯¢é€‰ä¿®äº†è¯¾ç¨‹1æˆ–è€…é€‰ä¿®äº†è¯¾ç¨‹2çš„å­¦ç”Ÿ
 select Sno from SC where Cno='1' union select Sno from SC where Cno='2';
---50.²éÑ¯¼ÆËã»ú¿ÆÑ§ÏµµÄÑ§ÉúÓëÄêÁä²»´óÓÚ19ËêµÄÑ§ÉúµÄ½»¼¯
+--50.æŸ¥è¯¢è®¡ç®—æœºç§‘å­¦ç³»çš„å­¦ç”Ÿä¸å¹´é¾„ä¸å¤§äº19å²çš„å­¦ç”Ÿçš„äº¤é›†
 select * from Student where Sdept='CS' intersect select * from Student where Sage<=19;
---51.²éÑ¯¼ÈÑ¡ĞŞÁË¿Î³Ì1ÓÖÑ¡ĞŞÁË¿Î³Ì2µÄÑ§Éú
+--51.æŸ¥è¯¢æ—¢é€‰ä¿®äº†è¯¾ç¨‹1åˆé€‰ä¿®äº†è¯¾ç¨‹2çš„å­¦ç”Ÿ
 select Sno from SC where Cno='1' intersect select Sno from SC where Cno='2';
---52.²éÑ¯¼ÆËã»ú¿ÆÑ§ÏµµÄÑ§ÉúÓëÄêÁä²»´óÓÚ19ËêµÄÑ§ÉúµÄ²î¼¯
+--52.æŸ¥è¯¢è®¡ç®—æœºç§‘å­¦ç³»çš„å­¦ç”Ÿä¸å¹´é¾„ä¸å¤§äº19å²çš„å­¦ç”Ÿçš„å·®é›†
 select Sno from SC where Cno='1' and Sno in (select Sno from SC where Cno='2');
---53.²åÈëÒ»ÌõÑ¡¿Î¼ÇÂ¼£¨¡¯200212128¡¯,¡¯1¡¯£©
+--53.æ’å…¥ä¸€æ¡é€‰è¯¾è®°å½•ï¼ˆâ€™200212128â€™,â€™1â€™ï¼‰
 insert into SC(Sno,Cno) values('200212128','1');
---54.½«Ñ§Éú200215121µÄÄêÁä¸ÄÎª22Ëê
+--54.å°†å­¦ç”Ÿ200215121çš„å¹´é¾„æ”¹ä¸º22å²
 update Student set Sage=22 where Sno='200215121';
---55.½«ËùÓĞÑ§ÉúµÄÄêÁäÔö¼Ó1Ëê
-
-/*
-56.½«¼ÆËã»ú¿ÆÑ§ÏµÈ«ÌåÑ§ÉúµÄ³É¼¨ÖÃÎªÁã
-57.É¾³ıËùÓĞµÄÑ§ÉúµÄÑ¡¿Î¼ÇÂ¼
-58.É¾³ı¼ÆËã»ú¿ÆÑ§ÏµËùÓĞÑ§ÉúµÄÑ¡¿Î¼ÇÂ¼
-59.½¨Á¢ĞÅÏ¢ÏµÑ§ÉúµÄÊÓÍ¼
-60.½¨Á¢ĞÅÏ¢ÏµÑ§ÉúÊÓÍ¼£¬²¢ÒªÇó½øĞĞĞŞ¸ÄºÍ²åÈë²Ù×÷Ê±ÈÔĞèÒª±£Ö¤¸ÃÊÓÍ¼Ö»ÓĞĞÅÏ¢ÏµµÄÑ§Éú
-61.½¨Á¢ĞÅÏ¢ÏµÑ¡ĞŞÁË1ºÅ¿Î³ÌµÄÑ§ÉúµÄÊÓÍ¼
-62.½¨Á¢ĞÅÏ¢ÏµÑ¡ĞŞÁË1ºÅ¿Î³ÌÇÒ³É¼¨ÔÚ90·ÖÒÔÉÏµÄÑ§ÉúµÄÊÓÍ¼
-63.¶¨ÒåÒ»¸ö·´Ó³Ñ§Éú³öÉúÄê·İµÄÊÓÍ¼
-64.½«Ñ§ÉúµÄÑ§ºÅ¼°ËûµÄÆ½¾ù³É¼¨¶¨ÒåÎªÒ»¸öÊÓÍ¼
-65.½«student±íÖĞËùÓĞÅ®Éú¼ÇÂ¼¶¨ÒåÎªÒ»¸öÊÓÍ¼
-66.ÔÚĞÅÏ¢ÏµÑ§ÉúµÄÊÓÍ¼ÖĞÕÒ³öÄêÁäĞ¡ÓÚ20ËêµÄÑ§Éú
-67.²éÑ¯Ñ¡ĞŞÁË1ºÅ¿Î³ÌµÄĞÅÏ¢ÏµÑ§Éú£¨ÓÃÊÓÍ¼ºÍ¶à±íÁ¬½Ó·Ö±ğÊµÏÖ£©
-68.ÀûÓÃ64ÌâµÄÊÓÍ¼²éÑ¯Æ½¾ù³É¼¨ÔÚ90·ÖÒÔÉÏµÄÑ§ÉúÑ§ºÅºÍÆ½¾ù³É¼¨
-69.½«ĞÅÏ¢ÏµÑ§ÉúÊÓÍ¼ÖĞµÄÑ§ºÅÎª200215122µÄÑ§ÉúĞÕÃû¸ÄÎª¡°Áõ³½¡±
-70.ÏòĞÅÏ¢ÏµÑ§ÉúÊÓÍ¼ÖĞ²åÈëÒ»¸öĞÂµÄÑ§Éú¼ÇÂ¼£¬ÆäÖĞÑ§ºÅÎª200215129£¬ĞÕÃûÎªÕÔĞÂ£¬ÄêÁäÎª20Ëê
-71.É¾³ıĞÅÏ¢ÏµÑ§ÉúÊÓÍ¼ÖĞÑ§ºÅÎª200215129µÄ¼ÇÂ¼
-*/
+--55.å°†æ‰€æœ‰å­¦ç”Ÿçš„å¹´é¾„å¢åŠ 1å²
+update Student set Sage=Sage+1;
+--56.å°†è®¡ç®—æœºç§‘å­¦ç³»å…¨ä½“å­¦ç”Ÿçš„æˆç»©ç½®ä¸ºé›¶
+update SC set Grade=0 where Sno in (select Sno from Student where Sdept='CS');
+--57.åˆ é™¤æ‰€æœ‰çš„å­¦ç”Ÿçš„é€‰è¯¾è®°å½•
+delete from SC;
+--58.åˆ é™¤è®¡ç®—æœºç§‘å­¦ç³»æ‰€æœ‰å­¦ç”Ÿçš„é€‰è¯¾è®°å½•
+delete from SC where Sno in (select Sno from Student where Sdept='CS');
+--59.å»ºç«‹ä¿¡æ¯ç³»å­¦ç”Ÿçš„è§†å›¾
+create view IS_Student as select Sno,Sname,Sage from Student where Sdept='IS';
+--60.å»ºç«‹ä¿¡æ¯ç³»å­¦ç”Ÿè§†å›¾ï¼Œå¹¶è¦æ±‚è¿›è¡Œä¿®æ”¹å’Œæ’å…¥æ“ä½œæ—¶ä»éœ€è¦ä¿è¯è¯¥è§†å›¾åªæœ‰ä¿¡æ¯ç³»çš„å­¦ç”Ÿ
+create view IS_Student as select Sno,Sname,Sage from Student where Sdept='IS' with check option;
+--61.å»ºç«‹ä¿¡æ¯ç³»é€‰ä¿®äº†1å·è¯¾ç¨‹çš„å­¦ç”Ÿçš„è§†å›¾
+create view IS_S1(Sno,Sname,Grade) as select Student.Sno,Sname,Grade from Student,SC where Sdept='IS' and Student.Sno=SC.Sno and SC.Cno='1';
+--62.å»ºç«‹ä¿¡æ¯ç³»é€‰ä¿®äº†1å·è¯¾ç¨‹ä¸”æˆç»©åœ¨90åˆ†ä»¥ä¸Šçš„å­¦ç”Ÿçš„è§†å›¾
+create view IS_S2 as select Sno,Sname,Grade from IS_S1 where Grade>=90;
+--63.å®šä¹‰ä¸€ä¸ªåæ˜ å­¦ç”Ÿå‡ºç”Ÿå¹´ä»½çš„è§†å›¾
+create view BT_S(Sno,Sname,Sbirth) as select Sno,Sname,2014-Sage from Student;
+--64.å°†å­¦ç”Ÿçš„å­¦å·åŠä»–çš„å¹³å‡æˆç»©å®šä¹‰ä¸ºä¸€ä¸ªè§†å›¾
+create view S_G(Sno,Gavg) as select Sno,AVG(Grade) from SC group by Sno;
+--65.å°†studentè¡¨ä¸­æ‰€æœ‰å¥³ç”Ÿè®°å½•å®šä¹‰ä¸ºä¸€ä¸ªè§†å›¾
+create view F_Student(F_sno,name,sex,age,dept) as select * from Student where Ssex='å¥³';
+--66.åœ¨ä¿¡æ¯ç³»å­¦ç”Ÿçš„è§†å›¾ä¸­æ‰¾å‡ºå¹´é¾„å°äº20å²çš„å­¦ç”Ÿ
+select Sno,Sage from IS_Student where Sage<20;
+--67.æŸ¥è¯¢é€‰ä¿®äº†1å·è¯¾ç¨‹çš„ä¿¡æ¯ç³»å­¦ç”Ÿï¼ˆç”¨è§†å›¾å’Œå¤šè¡¨è¿æ¥åˆ†åˆ«å®ç°ï¼‰
+select IS_Student.Sno,Sname from IS_Student,SC where IS_Student.Sno=SC.Sno and SC.Cno='1';
+--68.åˆ©ç”¨64é¢˜çš„è§†å›¾æŸ¥è¯¢å¹³å‡æˆç»©åœ¨90åˆ†ä»¥ä¸Šçš„å­¦ç”Ÿå­¦å·å’Œå¹³å‡æˆç»©
+select * from S_G where Gavg>=90;
+--69.å°†ä¿¡æ¯ç³»å­¦ç”Ÿè§†å›¾ä¸­çš„å­¦å·ä¸º200215122çš„å­¦ç”Ÿå§“åæ”¹ä¸ºâ€œåˆ˜è¾°â€
+update IS_Student set Sname='åˆ˜è¾°' where Sno='200215122';
+--70.å‘ä¿¡æ¯ç³»å­¦ç”Ÿè§†å›¾ä¸­æ’å…¥ä¸€ä¸ªæ–°çš„å­¦ç”Ÿè®°å½•ï¼Œå…¶ä¸­å­¦å·ä¸º200215129ï¼Œå§“åä¸ºèµµæ–°ï¼Œå¹´é¾„ä¸º20å²
+insert into IS_Student values('200215129','èµµæ–°','20');
+--71.åˆ é™¤ä¿¡æ¯ç³»å­¦ç”Ÿè§†å›¾ä¸­å­¦å·ä¸º200215129çš„è®°å½•
+delete from IS_Student where Sno='200215129';
